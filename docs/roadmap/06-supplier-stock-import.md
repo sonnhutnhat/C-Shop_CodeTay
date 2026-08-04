@@ -1,12 +1,13 @@
 # Phase 5 - Supplier and Stock Import
 
-## TASK-049 - Implement supplier data layer and list
+## TASK-049 - Implement supplier models, API, repository và list
 
 **Mục tiêu:** Port supplier CRUD, pagination, search và detail.
 
 **Phụ thuộc:** TASK-014, TASK-016, TASK-021.
 
-**File/Module liên quan:** supplier DTO/API/repository, `features/suppliers/`.
+**File/Module liên quan:** supplier DTO/API/repository,
+`lib/ui/pages/suppliers/`.
 
 **Đầu ra mong muốn:** Supplier list/detail chạy bằng API.
 
@@ -26,7 +27,8 @@
 
 **Phụ thuộc:** TASK-049.
 
-**File/Module liên quan:** `suppliers_form_sheet.dart`, supplier use cases.
+**File/Module liên quan:** `suppliers_form_sheet.dart`,
+`lib/repositories/supplier_repository.dart`.
 
 **Đầu ra mong muốn:** Mutation cập nhật list/detail nhất quán.
 
@@ -47,7 +49,7 @@
 
 **Phụ thuộc:** TASK-045, TASK-049.
 
-**File/Module liên quan:** `features/inventory/import_stock/`.
+**File/Module liên quan:** `lib/ui/pages/inventory/import_stock/`.
 
 **Đầu ra mong muốn:** Phiếu nhập tạo qua API với tổng tiền và payment đúng.
 
@@ -80,4 +82,3 @@
 - [ ] Cubit/widget tests.
 
 **Độ ưu tiên:** P1.
-

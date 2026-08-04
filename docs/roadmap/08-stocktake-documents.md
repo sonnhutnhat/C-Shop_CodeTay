@@ -6,7 +6,7 @@
 
 **Phụ thuộc:** TASK-045, TASK-046.
 
-**File/Module liên quan:** `features/inventory/stocktake/`.
+**File/Module liên quan:** `lib/ui/pages/inventory/stocktake/`.
 
 **Đầu ra mong muốn:** New/resume stocktake dùng dữ liệu backend.
 
@@ -69,7 +69,7 @@
 
 **Phụ thuộc:** TASK-052, TASK-061.
 
-**File/Module liên quan:** `features/inventory/invoice/`.
+**File/Module liên quan:** `lib/ui/pages/inventory/invoice/`.
 
 **Đầu ra mong muốn:** Filter loại/thời gian/search và detail route đúng loại chứng từ.
 
@@ -81,4 +81,3 @@
 - [ ] Cubit tests.
 
 **Độ ưu tiên:** P2.
-

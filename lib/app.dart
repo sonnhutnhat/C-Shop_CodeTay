@@ -13,8 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppSettingCubit()..load(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AppSettingCubit>(
+          create: (_) => AppSettingCubit()..load(),
+        ),
+      ],
       child: BlocBuilder<AppSettingCubit, AppSettingState>(
         buildWhen: (previous, current) => previous.language != current.language,
         builder: (context, state) {
