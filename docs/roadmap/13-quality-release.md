@@ -4,9 +4,9 @@
 
 **Mục tiêu:** Di chuyển toàn bộ user-facing text sang ARB.
 
-**Phụ thuộc:** TASK-012, toàn bộ feature active.
+**Phụ thuộc:** TASK-012, toàn bộ module đang được bật.
 
-**File/Module liên quan:** mọi presentation module, `l10n/*.arb`.
+**File/Module liên quan:** mọi page/widget trong `lib/ui/`, `lib/l10n/*.arb`.
 
 **Đầu ra mong muốn:** vi/en phủ 100% màn active.
 
@@ -24,9 +24,9 @@
 
 **Mục tiêu:** Đảm bảo semantics, text scale, contrast, keyboard và màn hình nhỏ.
 
-**Phụ thuộc:** TASK-021, toàn bộ feature active.
+**Phụ thuộc:** TASK-021, toàn bộ module đang được bật.
 
-**File/Module liên quan:** core widgets và presentation.
+**File/Module liên quan:** `lib/ui/widgets/` và `lib/ui/pages/`.
 
 **Đầu ra mong muốn:** Luồng P0/P1 dùng được với accessibility settings phổ biến.
 
@@ -45,7 +45,7 @@
 
 **Mục tiêu:** Hoàn thiện unit, widget, golden, integration và end-to-end suite.
 
-**Phụ thuộc:** Các feature tương ứng.
+**Phụ thuộc:** Các module tương ứng.
 
 **File/Module liên quan:** `test/`, `integration_test/`, fixtures/fakes.
 
@@ -53,7 +53,7 @@
 
 **Checklist hoàn thành:**
 
-- [ ] Domain/data mapping có unit test.
+- [ ] DTO/entity mapping và repository có unit test.
 - [ ] Cubit transition có unit test.
 - [ ] Critical UI có widget/golden test.
 - [ ] Critical journeys có integration test.
@@ -87,7 +87,7 @@
 
 **Mục tiêu:** Đo và tối ưu startup, rebuild, list, image cache, network và memory.
 
-**Phụ thuộc:** Feature P0/P1 hoàn tất.
+**Phụ thuộc:** Module P0/P1 hoàn tất.
 
 **File/Module liên quan:** app bootstrap, Home, POS, product/inventory/order lists.
 
@@ -108,7 +108,7 @@
 
 **Mục tiêu:** Rà soát storage, logs, transport, permissions, PII và auth lifecycle.
 
-**Phụ thuộc:** Feature P0/P1 hoàn tất.
+**Phụ thuộc:** Module P0/P1 hoàn tất.
 
 **File/Module liên quan:** core network/storage/logging, Android/iOS manifests, auth/payment.
 
@@ -169,11 +169,12 @@
 
 ## TASK-105 - Execute UAT and release readiness review
 
-**Mục tiêu:** Xác minh acceptance criteria theo business type và quyết định feature flag cho module chưa có backend.
+**Mục tiêu:** Xác minh acceptance criteria theo business type và quyết định
+cờ bật/tắt cho module chưa có backend.
 
 **Phụ thuộc:** TASK-097 đến TASK-104.
 
-**File/Module liên quan:** UAT checklist, release notes, feature flags.
+**File/Module liên quan:** UAT checklist, release notes, module flags.
 
 **Đầu ra mong muốn:** Sign-off rõ cho Retail, F&B, Service và known limitations.
 
@@ -185,4 +186,3 @@
 - [ ] Không còn P0 blocker.
 
 **Độ ưu tiên:** P0.
-

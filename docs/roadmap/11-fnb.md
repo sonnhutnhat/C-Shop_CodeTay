@@ -1,12 +1,13 @@
 # Phase 10 - F&B Variant
 
-## TASK-085 - Define F&B backend domain contracts
+## TASK-085 - Define F&B backend contracts
 
 **Mục tiêu:** Chốt API cho zone/table, menu/dish, table order, kitchen ticket và checkout.
 
 **Phụ thuộc:** TASK-032, TASK-053.
 
-**File/Module liên quan:** source `features/tables` tương ứng từ `ui/pages/tables/`; backend contract mới.
+**File/Module liên quan:** `lib/ui/pages/tables/`, F&B models, API service và
+repository contract.
 
 **Đầu ra mong muốn:** OpenAPI/ADR cho toàn vòng đời order tại bàn.
 
@@ -22,13 +23,14 @@
 
 ## TASK-086 - Implement table map and filters
 
-**Mục tiêu:** Tái tạo sơ đồ bàn theo zone/status bằng domain contract.
+**Mục tiêu:** Tái tạo sơ đồ bàn theo zone/status qua repository contract.
 
 **Phụ thuộc:** TASK-085.
 
 **File/Module liên quan:** `table_management_*`, `tables_data.dart`.
 
-**Đầu ra mong muốn:** Bàn hiển thị realtime/refresh từ datasource, không seed.
+**Đầu ra mong muốn:** Bàn hiển thị realtime/refresh từ API service hoặc
+repository, không seed.
 
 **Checklist hoàn thành:**
 
@@ -131,7 +133,7 @@
 
 **Phụ thuộc:** TASK-057, TASK-059, TASK-089.
 
-**File/Module liên quan:** table checkout coordinator, sales payment feature.
+**File/Module liên quan:** table checkout Cubit và sales payment pages.
 
 **Đầu ra mong muốn:** Thanh toán thành công cập nhật order và table atomically theo backend contract.
 
@@ -143,4 +145,3 @@
 - [ ] End-to-end test.
 
 **Độ ưu tiên:** P2.
-

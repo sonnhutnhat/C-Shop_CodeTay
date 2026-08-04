@@ -1,6 +1,6 @@
 # Phase 11 - Service Variant
 
-## TASK-092 - Define Service backend domain contracts
+## TASK-092 - Define Service backend contracts
 
 **Mục tiêu:** Chốt API cho service catalog, staff availability, appointment và service checkout.
 
@@ -68,7 +68,7 @@
 
 **Phụ thuộc:** TASK-094.
 
-**File/Module liên quan:** appointment form/detail, appointment use cases.
+**File/Module liên quan:** appointment form/detail và service repository.
 
 **Đầu ra mong muốn:** Mutation tuân state machine và cập nhật calendar.
 
@@ -101,4 +101,3 @@
 - [ ] End-to-end test.
 
 **Độ ưu tiên:** P2.
-

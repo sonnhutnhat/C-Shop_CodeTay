@@ -47,7 +47,8 @@
 
 **Phụ thuộc:** TASK-024, TASK-032, TASK-046, TASK-053.
 
-**File/Module liên quan:** `home_cubit.dart`, `home_state.dart`, Home use cases.
+**File/Module liên quan:** `lib/ui/pages/home/home_cubit.dart`,
+`home_state.dart`, các repository liên quan.
 
 **Đầu ra mong muốn:** Dashboard hỗ trợ partial success thay vì fallback mock ngầm.
 
@@ -88,7 +89,7 @@
 
 **Phụ thuộc:** TASK-015, TASK-040, TASK-046, TASK-055.
 
-**File/Module liên quan:** `features/global_search/`.
+**File/Module liên quan:** `lib/ui/pages/global_search/`.
 
 **Đầu ra mong muốn:** Kết quả nhóm theo tab và mở đúng detail route.
 
@@ -103,15 +104,16 @@
 
 ---
 
-## TASK-037 - Implement notification local domain and UI
+## TASK-037 - Implement notification local models và UI
 
-**Mục tiêu:** Port notification list/filter/read state nhưng tách mock khỏi production domain.
+**Mục tiêu:** Port notification list/filter/read state nhưng tách mock khỏi
+production code.
 
 **Phụ thuộc:** TASK-015, TASK-021, TASK-032.
 
 **File/Module liên quan:** `notification_entity.dart`, `notification_cubit.dart`, `notification_data.dart`.
 
-**Đầu ra mong muốn:** UI hoàn chỉnh với local/fake datasource chỉ bật ở dev.
+**Đầu ra mong muốn:** UI hoàn chỉnh với local/fake data source chỉ bật ở dev.
 
 **Checklist hoàn thành:**
 
@@ -141,4 +143,3 @@
 - [ ] Deep-link payload được validate.
 
 **Độ ưu tiên:** P2.
-

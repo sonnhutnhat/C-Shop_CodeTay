@@ -3,7 +3,14 @@
 Roadmap chi tiết đã được tách theo phase để dễ theo dõi. Mỗi task vẫn giữ
 nguyên ID, dependency, output, checklist và priority.
 
+Toàn bộ phase dùng cấu trúc layer-first giống source C-Shop:
+`models → network → repositories → ui`. Không tạo `lib/app/`, `lib/core/`
+hoặc `lib/features/`; root providers nằm trong `lib/app.dart`.
+
 ## Trạng thái
+
+Ký hiệu dưới đây áp dụng cho trạng thái phase tại mục lục. Trạng thái từng
+task được xác định bằng checklist trong file phase tương ứng.
 
 - `[ ]` Chưa bắt đầu
 - `[-]` Đang thực hiện
@@ -14,12 +21,13 @@ nguyên ID, dependency, output, checklist và priority.
 
 - [Phân tích source và nguyên tắc chung](roadmap/00-overview.md)
 - [Milestone và Definition of Done](roadmap/14-milestones-definition-of-done.md)
+- [Checklist code tay theo thứ tự thực thi](CODING_ROADMAP.md)
 
 ## Các phase
 
 - [-] [Phase 0 — Project Setup](roadmap/01-project-setup.md) — TASK-001 → TASK-008
 - [ ] [Phase 1 — Application Foundation](roadmap/02-application-foundation.md) — TASK-009 → TASK-021
-- [ ] [Phase 2 — Authentication & Onboarding](roadmap/03-authentication-onboarding.md) — TASK-022 → TASK-031
+- [-] [Phase 2 — Authentication & Onboarding](roadmap/03-authentication-onboarding.md) — TASK-022 → TASK-031
 - [ ] [Phase 3 — Main Shell, Home & Utilities](roadmap/04-main-shell-home-utilities.md) — TASK-032 → TASK-038
 - [ ] [Phase 4 — Catalog & Inventory Foundation](roadmap/05-catalog-inventory-foundation.md) — TASK-039 → TASK-048
 - [ ] [Phase 5 — Supplier & Stock Import](roadmap/06-supplier-stock-import.md) — TASK-049 → TASK-052
@@ -36,6 +44,5 @@ nguyên ID, dependency, output, checklist và priority.
 Khi bắt đầu hoặc hoàn thành một task:
 
 1. Cập nhật checklist trong file phase tương ứng.
-2. Ghi trạng thái cạnh tiêu đề task: `[ ]`, `[-]`, `[x]` hoặc `[!]`.
-3. Cập nhật trạng thái phase tại file mục lục này.
-4. Commit riêng và dùng Task ID trong commit message.
+2. Cập nhật trạng thái phase tại file mục lục này.
+3. Commit riêng và dùng Task ID trong commit message.

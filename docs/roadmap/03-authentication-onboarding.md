@@ -1,14 +1,17 @@
 # Phase 2 - Authentication and Onboarding
 
-## TASK-022 - Port auth domain models và repository contract
+## TASK-022 - Port auth models và repository contract
 
-**Mục tiêu:** Tạo entity/session/token/auth repository ở domain, tách DTO/API mapper ở data.
+**Mục tiêu:** Tạo token/session entity trong `lib/models/entities`, auth DTO
+trong `lib/models/dto/auth` và repository contract/implementation trong
+`lib/repositories`.
 
 **Phụ thuộc:** TASK-014, TASK-015.
 
 **File/Module liên quan:** `models/dto/auth/`, `token_entity.dart`, `session_entity.dart`, `auth_repository.dart`.
 
-**Đầu ra mong muốn:** Auth domain không import JSON/Dio/Flutter.
+**Đầu ra mong muốn:** Cubit/Page chỉ gọi `AuthRepository` và không phụ thuộc
+trực tiếp vào Dio.
 
 **Checklist hoàn thành:**
 
@@ -20,7 +23,7 @@
 
 ---
 
-## TASK-023 - Implement auth remote datasource
+## TASK-023 - Implement auth API service
 
 **Mục tiêu:** Port toàn bộ auth/tenant/device endpoint hiện có.
 
@@ -28,7 +31,8 @@
 
 **File/Module liên quan:** `auth_api_service.dart`, `api_endpoints.dart`.
 
-**Đầu ra mong muốn:** Datasource có request/response type rõ ràng cho từng endpoint.
+**Đầu ra mong muốn:** `AuthApiService` có request/response type rõ ràng cho
+từng endpoint.
 
 **Checklist hoàn thành:**
 
@@ -61,33 +65,41 @@
 
 ---
 
-## TASK-025 - Implement Splash feature
+## TASK-025 - Implement Splash
 
-**Mục tiêu:** Tái tạo splash và kích hoạt session coordinator.
+**Mục tiêu:** Tái tạo visual Splash trước; kích hoạt session coordinator khi
+AuthRepository và các route đích đã sẵn sàng.
 
-**Phụ thuộc:** TASK-020, TASK-021, TASK-024.
+**Phụ thuộc:** Visual phụ thuộc TASK-008, TASK-011; điều hướng session phụ
+thuộc TASK-020, TASK-021, TASK-024.
 
-**File/Module liên quan:** `features/app_start/splash/`, `img_splash.png`.
+**File/Module liên quan:** `lib/ui/pages/app_start/splash/`,
+`assets/images/img_splash.png`.
 
-**Đầu ra mong muốn:** Splash dẫn tới login, onboarding hoặc main shell đúng trạng thái.
+**Đầu ra mong muốn:** Route `/` hiển thị đúng ảnh Splash C-Shop; sau khi hoàn
+thiện auth, Splash dẫn tới login, onboarding hoặc main shell đúng trạng thái.
 
 **Checklist hoàn thành:**
 
+- [x] Ảnh Splash full-screen dùng `BoxFit.cover`.
+- [x] Route `/` render `SplashPage`, không còn `BasePage` tạm.
 - [ ] Không delay cứng nếu bootstrap đã hoàn thành.
 - [ ] Không double navigation.
-- [ ] Có widget/navigation test.
+- [x] Có widget test cho visual Splash.
+- [ ] Có navigation test khi session coordinator được nối.
 
 **Độ ưu tiên:** P0.
 
 ---
 
-## TASK-026 - Implement Login feature
+## TASK-026 - Implement Login
 
-**Mục tiêu:** Tái tạo login UI, validation và gọi login use case.
+**Mục tiêu:** Tái tạo login UI, validation và gọi `AuthRepository`.
 
 **Phụ thuộc:** TASK-021, TASK-024, TASK-025.
 
-**File/Module liên quan:** `features/auth/login/`, `login_cubit.dart`, `login_page.dart`.
+**File/Module liên quan:** `lib/ui/pages/auth/login/login_cubit.dart`,
+`login_state.dart`, `login_page.dart`.
 
 **Đầu ra mong muốn:** Login thành công vào onboarding hoặc main shell; lỗi hiển thị đúng.
 
@@ -102,13 +114,14 @@
 
 ---
 
-## TASK-027 - Implement Register OTP feature
+## TASK-027 - Implement Register OTP
 
 **Mục tiêu:** Tái tạo yêu cầu OTP, resend timer và verify OTP cho đăng ký.
 
 **Phụ thuộc:** TASK-021, TASK-024.
 
-**File/Module liên quan:** `features/auth/register/`, `register_cubit.dart`, OTP widgets.
+**File/Module liên quan:** `lib/ui/pages/auth/register/`,
+`register_cubit.dart`, OTP widgets.
 
 **Đầu ra mong muốn:** Multi-step register đi từ contact tới OTP verification.
 
@@ -129,7 +142,8 @@
 
 **Phụ thuộc:** TASK-027.
 
-**File/Module liên quan:** register presentation, password strength widget, auth use case.
+**File/Module liên quan:** `lib/ui/pages/auth/register/`, password strength
+widget, `AuthRepository`.
 
 **Đầu ra mong muốn:** Session được lưu và điều hướng onboarding sau setup thành công.
 
@@ -150,7 +164,7 @@
 
 **Phụ thuộc:** TASK-021, TASK-024.
 
-**File/Module liên quan:** `features/auth/forgot_password/`.
+**File/Module liên quan:** `lib/ui/pages/auth/forgot_password/`.
 
 **Đầu ra mong muốn:** Reset thành công quay lại login với stack đúng.
 
@@ -171,7 +185,8 @@
 
 **Phụ thuộc:** TASK-021, TASK-024.
 
-**File/Module liên quan:** `features/onboarding/`, `BusinessType`, `onboarding_data.dart`.
+**File/Module liên quan:** `lib/ui/pages/onboarding/`, `BusinessType`,
+`onboarding_data.dart`.
 
 **Đầu ra mong muốn:** Lựa chọn map chính xác sang API business industry.
 
@@ -203,4 +218,3 @@
 - [ ] Integration test toàn onboarding.
 
 **Độ ưu tiên:** P0.
-

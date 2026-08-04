@@ -11,8 +11,9 @@
 ## 6. Definition of Done áp dụng cho mọi task triển khai
 
 - Scope chỉ đúng một mục tiêu của task; không kèm refactor ngoài phạm vi.
-- Dependency đã hoàn tất hoặc được fake qua domain contract, không import tắt layer.
-- Code tuân Feature First và dependency rule.
+- Dependency đã hoàn tất hoặc được fake qua repository contract.
+- Code tuân cấu trúc layer-first và convention của source C-Shop.
+- Không tạo `lib/app/`, `lib/core/`, `lib/features/`.
 - Không có secret, PII hoặc token trong code/log/fixture.
 - `dart format`, analyze và test liên quan đều pass.
 - Error/loading/empty state được xử lý nếu task có UI hoặc I/O.

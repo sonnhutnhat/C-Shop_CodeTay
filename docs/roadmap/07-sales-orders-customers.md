@@ -1,6 +1,6 @@
 # Phase 6 - Sales, Orders and Customers
 
-## TASK-053 - Implement orders domain/data layer
+## TASK-053 - Implement order models, API và repository
 
 **Mục tiêu:** Port order, detail, recent transaction, sales overview và top product.
 
@@ -26,7 +26,7 @@
 
 **Phụ thuộc:** TASK-021, TASK-039, TASK-046.
 
-**File/Module liên quan:** `features/sales/pos/`.
+**File/Module liên quan:** `lib/ui/pages/sales/pos/`.
 
 **Đầu ra mong muốn:** Cart calculation deterministic và không bán vượt rule cấu hình.
 
@@ -41,13 +41,14 @@
 
 ---
 
-## TASK-055 - Implement customer data layer and list
+## TASK-055 - Implement customer models, API, repository và list
 
 **Mục tiêu:** Port customer list, search, create/update và customer orders.
 
 **Phụ thuộc:** TASK-014, TASK-016, TASK-021, TASK-053.
 
-**File/Module liên quan:** customer DTO/API/repository, `features/customers/`.
+**File/Module liên quan:** customer DTO/API/repository,
+`lib/ui/pages/customers/`.
 
 **Đầu ra mong muốn:** Customer list/detail dùng API, có lịch sử mua hàng.
 
@@ -68,7 +69,8 @@
 
 **Phụ thuộc:** TASK-055.
 
-**File/Module liên quan:** `customer_form_sheet.dart`, customer use cases.
+**File/Module liên quan:** `customer_form_sheet.dart`,
+`lib/repositories/customer_repository.dart`.
 
 **Đầu ra mong muốn:** Customer mới có thể chọn ngay trong luồng thanh toán.
 
@@ -89,7 +91,7 @@
 
 **Phụ thuộc:** TASK-053, TASK-054, TASK-055.
 
-**File/Module liên quan:** `features/sales/payment/`.
+**File/Module liên quan:** `lib/ui/pages/sales/payment/`.
 
 **Đầu ra mong muốn:** Payment request hợp lệ cho từng method.
 
@@ -131,7 +133,7 @@
 
 **Phụ thuộc:** TASK-053, TASK-057.
 
-**File/Module liên quan:** payment Cubit/use case, order repository.
+**File/Module liên quan:** payment Cubit và order repository.
 
 **Đầu ra mong muốn:** Order chỉ tạo một lần; cart chỉ clear sau success.
 
@@ -172,7 +174,7 @@
 
 **Phụ thuộc:** TASK-053, TASK-021.
 
-**File/Module liên quan:** `features/sales/order_history/`.
+**File/Module liên quan:** `lib/ui/pages/sales/order_history/`.
 
 **Đầu ra mong muốn:** List và tổng doanh thu phản ánh toàn bộ filter backend.
 
@@ -193,7 +195,7 @@
 
 **Phụ thuộc:** TASK-053, TASK-061.
 
-**File/Module liên quan:** `features/sales/order_detail/`.
+**File/Module liên quan:** `lib/ui/pages/sales/order_detail/`.
 
 **Đầu ra mong muốn:** Detail tải theo ID; cancel cập nhật status và list nguồn.
 
@@ -226,4 +228,3 @@
 - [ ] Không ghi âm/log nội dung ngoài nhu cầu.
 
 **Độ ưu tiên:** P2.
-

@@ -1,14 +1,16 @@
 # Phase 4 - Catalog and Inventory Foundation
 
-## TASK-039 - Implement catalog domain/data layer
+## TASK-039 - Implement catalog models, API và repository
 
-**Mục tiêu:** Port category/product entity, DTO, mapper, datasource và repository.
+**Mục tiêu:** Port category/product entity, DTO, API service và repository
+vào các layer tương ứng của base C-Shop.
 
 **Phụ thuộc:** TASK-014, TASK-016, TASK-017.
 
 **File/Module liên quan:** `models/catalog/`, `catalog_api_service.dart`, category/product repositories.
 
-**Đầu ra mong muốn:** CRUD category/product và pagination có domain contract sạch.
+**Đầu ra mong muốn:** CRUD category/product và pagination được cung cấp qua
+repository contract.
 
 **Checklist hoàn thành:**
 
@@ -26,7 +28,7 @@
 
 **Phụ thuộc:** TASK-021, TASK-039.
 
-**File/Module liên quan:** `features/catalog/products/`.
+**File/Module liên quan:** `lib/ui/pages/catalog/products/`.
 
 **Đầu ra mong muốn:** List có pagination ổn định và refresh sau mutation.
 
@@ -47,7 +49,9 @@
 
 **Phụ thuộc:** TASK-039, TASK-040, TASK-044.
 
-**File/Module liên quan:** `product_form_sheet.dart`, product/category use cases.
+**File/Module liên quan:** `product_form_sheet.dart`,
+`lib/repositories/product_repository.dart`,
+`lib/repositories/category_repository.dart`.
 
 **Đầu ra mong muốn:** Product mới xuất hiện trong list với dữ liệu backend.
 
@@ -68,7 +72,8 @@
 
 **Phụ thuộc:** TASK-040, TASK-044.
 
-**File/Module liên quan:** product form, update product use case.
+**File/Module liên quan:** product form và
+`lib/repositories/product_repository.dart`.
 
 **Đầu ra mong muốn:** Update payload chỉ chứa field thay đổi theo contract.
 
@@ -89,7 +94,7 @@
 
 **Phụ thuộc:** TASK-040.
 
-**File/Module liên quan:** product repository/use case/list/detail.
+**File/Module liên quan:** product repository, list và detail page.
 
 **Đầu ra mong muốn:** Delete success cập nhật list; API conflict được diễn giải.
 
@@ -125,7 +130,7 @@
 
 ---
 
-## TASK-045 - Implement inventory domain/data layer
+## TASK-045 - Implement inventory models, API và repository
 
 **Mục tiêu:** Port overview, item, import, stocktake, adjustment DTO/repository.
 
@@ -172,7 +177,8 @@
 
 **Phụ thuộc:** TASK-045, TASK-046.
 
-**File/Module liên quan:** `inventory_adjust_sheet.dart`, adjustment use case.
+**File/Module liên quan:** `inventory_adjust_sheet.dart`,
+`lib/repositories/inventory_repository.dart`.
 
 **Đầu ra mong muốn:** Điều chỉnh thành công làm mới item/overview.
 
@@ -204,4 +210,3 @@
 - [ ] Unit test mapping payload.
 
 **Độ ưu tiên:** P1.
-

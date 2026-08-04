@@ -2,13 +2,16 @@
 
 ## TASK-009 - Xây dựng app bootstrap pipeline
 
-**Mục tiêu:** Khởi tạo binding, environment, storage, Firebase, notification và dependency trước `runApp`.
+**Mục tiêu:** Khởi tạo binding, environment, Firebase và notification trong
+các entrypoint trước `runApp(const MyApp())`.
 
 **Phụ thuộc:** TASK-006, TASK-007.
 
-**File/Module liên quan:** `lib/app/bootstrap/`, `main_<flavor>.dart`.
+**File/Module liên quan:** `lib/main.dart`, `lib/main_dev.dart`,
+`lib/main_prod.dart`, `lib/services/notification_service.dart`.
 
-**Đầu ra mong muốn:** Bootstrap có error boundary và có thể test độc lập.
+**Đầu ra mong muốn:** Mỗi entrypoint khởi tạo đúng environment và service theo
+convention của source C-Shop.
 
 **Checklist hoàn thành:**
 
@@ -20,21 +23,25 @@
 
 ---
 
-## TASK-010 - Thiết lập dependency injection composition root
+## TASK-010 - Thiết lập root providers trong app.dart
 
-**Mục tiêu:** Đăng ký core service và feature dependency tại một composition root.
+**Mục tiêu:** Đăng ký repository và global Cubit trực tiếp trong `app.dart`
+giống source C-Shop.
 
 **Phụ thuộc:** TASK-006, TASK-009.
 
-**File/Module liên quan:** `lib/app/di/`, root `MultiRepositoryProvider`, root `MultiBlocProvider`.
+**File/Module liên quan:** `lib/app.dart`, `MultiRepositoryProvider`,
+`MultiBlocProvider`.
 
-**Đầu ra mong muốn:** UI không tự tạo API service/repository; dependency có thể override trong test.
+**Đầu ra mong muốn:** Repository dùng toàn app nằm trong
+`MultiRepositoryProvider`; global Cubit nằm trong `MultiBlocProvider`.
 
 **Checklist hoàn thành:**
 
-- [ ] Lifetime singleton/factory được ghi rõ.
-- [ ] Feature registration tách module.
-- [ ] Test có thể inject fake repository.
+- [ ] Không tạo `AppDependencies` hoặc thư mục `lib/app/di/`.
+- [ ] Chỉ đăng ký repository/global Cubit đã được sử dụng.
+- [ ] Page-level Cubit vẫn được tạo gần page.
+- [ ] Widget test có thể bọc page bằng fake repository provider.
 
 **Độ ưu tiên:** P0.
 
@@ -42,11 +49,12 @@
 
 ## TASK-011 - Port design tokens và app theme
 
-**Mục tiêu:** Port `AppColors`, `AppDimens`, `AppTextStyles`, `AppShadows`, `AppThemes` vào core theme.
+**Mục tiêu:** Port `AppColors`, `AppDimens`, `AppTextStyles`, `AppShadows`,
+`AppThemes` vào `lib/common/` giống source.
 
 **Phụ thuộc:** TASK-008.
 
-**File/Module liên quan:** source `lib/common/*`; target `lib/app/theme/`.
+**File/Module liên quan:** `lib/common/`.
 
 **Đầu ra mong muốn:** Light theme tái tạo đúng visual language C-Shop.
 
@@ -66,7 +74,8 @@
 
 **Phụ thuộc:** TASK-004, TASK-006.
 
-**File/Module liên quan:** `lib/core/localization/`, `l10n/*.arb`, `AppSettingCubit`.
+**File/Module liên quan:** `lib/l10n/`, `lib/generated/`,
+`lib/global_blocs/setting/app_setting_cubit.dart`.
 
 **Đầu ra mong muốn:** Locale được persist và app rebuild đúng.
 
@@ -86,7 +95,8 @@
 
 **Phụ thuộc:** TASK-002, TASK-006.
 
-**File/Module liên quan:** `lib/utils/logger.dart`, `ApiInterceptors`, `lib/core/logging/`.
+**File/Module liên quan:** `lib/utils/logger.dart`,
+`lib/network/api_interceptors.dart`.
 
 **Đầu ra mong muốn:** Structured logger theo environment với redaction test.
 
@@ -102,13 +112,15 @@
 
 ## TASK-014 - Xây dựng error model chung
 
-**Mục tiêu:** Chuẩn hóa Dio, API envelope, validation, connectivity và unknown error thành failure/domain error.
+**Mục tiêu:** Chuẩn hóa Dio, API envelope, validation, connectivity và lỗi
+không xác định thành `AppException`.
 
 **Phụ thuộc:** TASK-006.
 
-**File/Module liên quan:** `api_exception.dart`, `api_envelope.dart`, `base_repository.dart`, `lib/core/error/`.
+**File/Module liên quan:** `lib/network/api_exception.dart`,
+`lib/network/api_envelope.dart`, `lib/repositories/base_repository.dart`.
 
-**Đầu ra mong muốn:** Presentation không phụ thuộc `DioException`.
+**Đầu ra mong muốn:** Cubit/Page không phụ thuộc `DioException`.
 
 **Checklist hoàn thành:**
 
@@ -120,13 +132,15 @@
 
 ---
 
-## TASK-015 - Xây dựng storage abstraction
+## TASK-015 - Hoàn thiện storage helpers
 
-**Mục tiêu:** Tách secure storage và preferences thành interface testable.
+**Mục tiêu:** Hoàn thiện secure storage và preferences helper theo convention
+của source, đồng thời giữ API có thể thay thế trong test khi repository cần.
 
 **Phụ thuộc:** TASK-006, TASK-010.
 
-**File/Module liên quan:** `secure_storage_helper.dart`, `share_preferences_helper.dart`, `lib/core/storage/`.
+**File/Module liên quan:** `lib/database/secure_storage_helper.dart`,
+`lib/database/share_preferences_helper.dart`.
 
 **Đầu ra mong muốn:** Token/session nằm secure storage; setting và local config nằm preferences.
 
@@ -146,9 +160,12 @@
 
 **Phụ thuộc:** TASK-002, TASK-013, TASK-014.
 
-**File/Module liên quan:** `api_util.dart`, `api_client.dart`, `lib/core/network/`.
+**File/Module liên quan:** `lib/network/api_util.dart`,
+`lib/network/api_client.dart`, các `lib/network/*_api_service.dart`.
 
-**Đầu ra mong muốn:** Một networking stack thống nhất; bỏ Retrofit client mẫu `/login`, `/logout` không dùng.
+**Đầu ra mong muốn:** Một `Dio` dùng chung; Retrofit `ApiClient` và các API
+service viết tay chỉ tồn tại khi có consumer thật, không giữ endpoint mẫu
+không dùng.
 
 **Checklist hoàn thành:**
 
@@ -187,7 +204,8 @@
 
 **Phụ thuộc:** TASK-015, TASK-016, TASK-017.
 
-**File/Module liên quan:** `api_interceptors.dart`, auth token datasource.
+**File/Module liên quan:** `lib/network/api_interceptors.dart`,
+`lib/database/secure_storage_helper.dart`, auth API service.
 
 **Đầu ra mong muốn:** Refresh/retry không deadlock, không loop, bảo toàn method/body/query/header.
 
@@ -204,18 +222,20 @@
 
 ## TASK-019 - Xây dựng app router và route contracts
 
-**Mục tiêu:** Khai báo toàn bộ route app-start và feature bằng GoRouter thay cho callback navigation rải rác.
+**Mục tiêu:** Khai báo app-start route bằng GoRouter và giữ cách navigation
+nội bộ tương thích source C-Shop.
 
 **Phụ thuộc:** TASK-006, TASK-010.
 
 **File/Module liên quan:** `route_config.dart`, `app_navigator.dart`, `MainNavigationPage`.
 
-**Đầu ra mong muốn:** Typed route name/path/argument và root navigator key thống nhất.
+**Đầu ra mong muốn:** Route name/path/argument và root navigator key thống
+nhất, không buộc chuyển toàn bộ navigation nội bộ trong một task.
 
 **Checklist hoàn thành:**
 
 - [ ] App-start route ngang hàng, không lộ Splash khi swipe back.
-- [ ] Route argument không dùng entity data-layer.
+- [ ] Route argument có type rõ ràng và không truyền dữ liệu nhạy cảm.
 - [ ] Deep-link invalid có fallback.
 - [ ] Navigation test cho route chính.
 
@@ -249,7 +269,7 @@
 
 **Phụ thuộc:** TASK-011, TASK-012.
 
-**File/Module liên quan:** source `lib/ui/widgets/`; target `lib/core/widgets/`.
+**File/Module liên quan:** `lib/ui/widgets/`.
 
 **Đầu ra mong muốn:** Button, field, card, badge, header, list, bottom sheet, dialog, loading, empty/error/async view dùng lại được.
 
@@ -261,4 +281,3 @@
 - [ ] Widget test cho control quan trọng.
 
 **Độ ưu tiên:** P0.
-

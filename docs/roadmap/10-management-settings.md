@@ -6,7 +6,7 @@
 
 **Phụ thuộc:** TASK-019, TASK-021, TASK-032.
 
-**File/Module liên quan:** `features/settings/`, `settings_data.dart`.
+**File/Module liên quan:** `lib/ui/pages/settings/`, `settings_data.dart`.
 
 **Đầu ra mong muốn:** Mọi item có typed route hoặc trạng thái unavailable rõ ràng.
 
@@ -26,7 +26,7 @@
 
 **Phụ thuộc:** TASK-023, TASK-024, TASK-044, TASK-076.
 
-**File/Module liên quan:** `store_profile_page.dart`, tenant repository/use case.
+**File/Module liên quan:** `store_profile_page.dart`, auth/tenant repository.
 
 **Đầu ra mong muốn:** Store name/image cập nhật đồng thời session, shell và Home.
 
@@ -68,7 +68,7 @@
 
 **Phụ thuộc:** TASK-023, TASK-076.
 
-**File/Module liên quan:** `login_devices_page.dart`, device auth use cases.
+**File/Module liên quan:** `login_devices_page.dart`, auth repository.
 
 **Đầu ra mong muốn:** Current device được phân biệt và không bị chọn logout nhầm.
 
@@ -110,7 +110,7 @@
 
 **Phụ thuộc:** TASK-080.
 
-**File/Module liên quan:** bank account feature/data migration.
+**File/Module liên quan:** bank account pages, models và data migration.
 
 **Đầu ra mong muốn:** ADR + backend contract hoặc quyết định chính thức giữ local-only.
 
@@ -124,7 +124,7 @@
 
 ---
 
-## TASK-082 - Implement staff data layer and management
+## TASK-082 - Implement staff models, API, repository và management
 
 **Mục tiêu:** Port staff list/create/update/delete.
 
@@ -137,7 +137,7 @@
 **Checklist hoàn thành:**
 
 - [ ] Owner/current staff được phân biệt.
-- [ ] Role code map có domain enum/value object.
+- [ ] Role code map có enum/value object rõ ràng.
 - [ ] Không cho xóa owner/current user sai rule.
 - [ ] Repository/cubit/widget tests.
 
@@ -183,4 +183,3 @@
 - [ ] Deferred item ẩn hoặc ghi unavailable rõ.
 
 **Độ ưu tiên:** P2.
-

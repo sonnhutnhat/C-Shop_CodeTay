@@ -1,6 +1,6 @@
 # Phase 8 - Finance
 
-## TASK-068 - Implement finance data layer
+## TASK-068 - Implement finance models, API và repository
 
 **Mục tiêu:** Port summary, cashbook, entry, customer debt, supplier debt và revenue target.
 
@@ -8,7 +8,7 @@
 
 **File/Module liên quan:** finance DTO/API/repository.
 
-**Đầu ra mong muốn:** Finance repository domain contract bao phủ endpoint hiện hữu.
+**Đầu ra mong muốn:** Finance repository contract bao phủ endpoint hiện hữu.
 
 **Checklist hoàn thành:**
 
@@ -26,7 +26,7 @@
 
 **Phụ thuộc:** TASK-021, TASK-068.
 
-**File/Module liên quan:** `features/finance/overview/`.
+**File/Module liên quan:** `lib/ui/pages/finance/overview/`.
 
 **Đầu ra mong muốn:** Revenue/expense/profit/debt hiển thị từ API, không fallback mock.
 
@@ -46,7 +46,8 @@
 
 **Phụ thuộc:** TASK-068.
 
-**File/Module liên quan:** `revenue_config_page.dart`, revenue target use cases.
+**File/Module liên quan:** `revenue_config_page.dart`,
+`lib/repositories/finance_repository.dart`.
 
 **Đầu ra mong muốn:** Target mới phản ánh ở Home và Finance.
 
@@ -66,7 +67,7 @@
 
 **Phụ thuộc:** TASK-021, TASK-068.
 
-**File/Module liên quan:** `features/finance/cashbook/`.
+**File/Module liên quan:** `lib/ui/pages/finance/cashbook/`.
 
 **Đầu ra mong muốn:** Opening/closing balance và transactions khớp backend.
 
@@ -86,7 +87,8 @@
 
 **Phụ thuộc:** TASK-071.
 
-**File/Module liên quan:** cashbook add transaction sheet, create-entry use case.
+**File/Module liên quan:** cashbook add transaction sheet và finance
+repository.
 
 **Đầu ra mong muốn:** Entry mới xuất hiện và balance được refresh.
 
@@ -107,7 +109,8 @@
 
 **Phụ thuộc:** TASK-055, TASK-068.
 
-**File/Module liên quan:** `features/finance/debt/`, customer detail collect sheet.
+**File/Module liên quan:** `lib/ui/pages/finance/debt/`, customer detail
+collect sheet.
 
 **Đầu ra mong muốn:** Debt/customer/cashbook đồng bộ sau thu.
 
@@ -160,4 +163,3 @@
 - [ ] Không seed production ngoài lựa chọn mặc định đã duyệt.
 
 **Độ ưu tiên:** P3.
-

@@ -102,21 +102,27 @@
 
 ---
 
-## TASK-006 - Tạo package structure Feature First
+## TASK-006 - Tạo package structure giống base C-Shop
 
-**Mục tiêu:** Tạo skeleton `app`, `core`, `features` và quy tắc dependency Clean Architecture.
+**Mục tiêu:** Tạo skeleton layer-first giống source C-Shop và ghi rõ trách
+nhiệm của từng layer.
 
 **Phụ thuộc:** TASK-003.
 
-**File/Module liên quan:** `lib/app/`, `lib/core/`, `lib/features/`.
+**File/Module liên quan:** `lib/common/`, `lib/configs/`, `lib/database/`,
+`lib/global/`, `lib/global_blocs/`, `lib/models/`, `lib/network/`,
+`lib/repositories/`, `lib/router/`, `lib/services/`, `lib/ui/`, `lib/utils/`,
+`lib/app.dart`.
 
-**Đầu ra mong muốn:** Cấu trúc đích có README/ADR giải thích vị trí của entity, DTO, mapper, repository, use case, Cubit và widget.
+**Đầu ra mong muốn:** Cấu trúc đích bám source tham chiếu và có README giải
+thích vị trí của model/DTO, API service, repository, Cubit, page và widget.
 
 **Checklist hoàn thành:**
 
-- [ ] Không tạo barrel file gây circular dependency.
-- [ ] Có template cấu trúc cho feature mới.
-- [ ] Có quy tắc import giữa các layer.
+- [x] Không tạo các root folder `lib/app/`, `lib/core/`, `lib/features/`.
+- [x] `app.dart` là nơi chứa root providers và `MaterialApp`.
+- [x] Page-level Cubit/State đặt cạnh page trong `lib/ui/pages/<module>/`.
+- [x] Có quy tắc import giữa `models`, `network`, `repositories` và `ui`.
 
 **Độ ưu tiên:** P0.
 
@@ -124,19 +130,23 @@
 
 ## TASK-007 - Thiết lập flavor entrypoints
 
-**Mục tiêu:** Tạo bootstrap riêng cho dev, staging và production.
+**Mục tiêu:** Tạo entrypoint giống source cho dev, production và entrypoint
+mặc định; staging được cấu hình trong `Environment` nhưng chưa có entrypoint
+riêng.
 
 **Phụ thuộc:** TASK-002, TASK-003.
 
-**File/Module liên quan:** `lib/main_dev.dart`, `lib/main_stg.dart`, `lib/main_prod.dart`, Android productFlavors, iOS schemes.
+**File/Module liên quan:** `lib/main.dart`, `lib/main_dev.dart`,
+`lib/main_prod.dart`, Android productFlavors, iOS schemes.
 
-**Đầu ra mong muốn:** Mỗi flavor build với tên, identifier và config đúng.
+**Đầu ra mong muốn:** Dev/prod build với tên, identifier và config đúng;
+không mô tả `main_stg.dart` khi file này chưa tồn tại trong source tham chiếu.
 
 **Checklist hoàn thành:**
 
 - [ ] Không hard-code environment trong `main.dart`.
 - [ ] Có launch configuration cho IDE.
-- [ ] Smoke build từng flavor thành công.
+- [ ] Smoke build dev và prod thành công.
 
 **Độ ưu tiên:** P0.
 
@@ -159,4 +169,3 @@
 - [ ] License/nguồn asset được ghi nhận.
 
 **Độ ưu tiên:** P1.
-
